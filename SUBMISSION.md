@@ -2,7 +2,7 @@
 
 **Repository:** https://github.com/alvy007/water-jug-ai
 
-**Live demo:** https://alvy007.github.io/water-jug-ai/ (enter only after GitHub Pages has been enabled and verified)
+**Live demo:** https://alvy007.github.io/water-jug-ai/
 
 **Attachment:** `water-jug-ai-submission.zip`
 
@@ -18,6 +18,6 @@ Implemented a fully interactive Water Jug Problem solver using JavaScript and cl
 - [x] Documentation and implementation remarks
 - [x] Confirm automated tests pass (14/14)
 - [x] Create GitHub repository and push source
-- [ ] Enable GitHub Pages with GitHub Actions in repository settings and verify live URL
+- [ ] Verify GitHub Pages deployment from main /docs at the public URL
 - [ ] Attach ZIP to portal
 - [ ] Submit once all fields are verified

@@ -73,18 +73,16 @@ water-jug-ai/
 
 ## Deploy for free using GitHub Pages
 
-Repository: https://github.com/alvy007/water-jug-ai
+**Live URL:** https://alvy007.github.io/water-jug-ai/
 
-This project includes the automated GitHub Actions workflow `.github/workflows/deploy-pages.yml` that runs the 14 unit tests and deploys the static website on every push to `main`.
+The deployable site is in `docs/`, mirroring the top-level application. GitHub Pages publishes directly from branch `main`, folder `/docs`, without a build step. The `docs/.nojekyll` marker disables Jekyll processing.
 
-**One-time GitHub Pages setup:**
+- Repository: https://github.com/alvy007/water-jug-ai
+- Pages Settings: https://github.com/alvy007/water-jug-ai/settings/pages
+- Pages Source: **Deploy from a branch**, **main**, **/docs**
+- Automated tests: GitHub Actions runs `node --test tests/solver.test.mjs` on every push to main.
 
-1. Open [Repository Settings → Pages](https://github.com/alvy007/water-jug-ai/settings/pages).
-2. Under **Build and deployment**, set **Source** to **GitHub Actions** (not "Deploy from a branch").
-3. Open [Actions](https://github.com/alvy007/water-jug-ai/actions) and re-run the failed deployment workflow if GitHub does not trigger it automatically.
-4. Confirm the URL https://alvy007.github.io/water-jug-ai/ is accessible before submitting it.
-
-The repository and tests are complete. GitHub Pages is not considered live until the published URL has been verified.
+Changes to the top-level app files should also be mirrored into `docs/` before pushing, because that directory hosts the public demo.
 
 ## Tech stack
 

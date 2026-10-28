@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Solve and visualize the classical Artificial Intelligence Water Jug Problem with BFS and DFS state-space search." />
+  <meta name="theme-color" content="#0a1425" />
+  <title>JugLab | Water Jug AI Solver</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="js/app.mjs"></script>
+</head>
+<body>
+  <div class="background-orb orb-one" aria-hidden="true"></div>
+  <div class="background-orb orb-two" aria-hidden="true"></div>
+  <header class="site-header shell">
+    <a class="brand" href="#top" aria-label="JugLab home"><span class="brand-icon" aria-hidden="true">J<span>•</span></span><span>Jug<span class="brand-accent">Lab</span></span></a>
+    <div class="header-side"><span class="header-meta"><span class="status-dot"></span> ALGORITHM PLAYGROUND</span><a class="header-link" href="#how-it-works">How it works <span aria-hidden="true">↗</span></a></div>
+  </header>
+  <main class="shell" id="top">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="eyebrow"><span class="eyebrow-mark">01</span> CLASSICAL AI / STATE-SPACE SEARCH</div>
+      <h1 id="page-title">Every problem has <span> a path.</span></h1>
+      <p>Explore how search algorithms solve the classic Water Jug Problem. Configure your jugs, run BFS or DFS, and watch each move unfold.</p>
+      <div class="intro-chips"><span>◆ Breadth-first search</span><span>◆ Depth-first search</span><span>◆ Step-by-step visualization</span></div>
+    </section>
+    <div class="workspace">
+      <section class="panel controls-panel" aria-labelledby="setup-title">
+        <div class="panel-heading"><div><div class="section-number">SETUP / 01</div><h2 id="setup-title">Configure your puzzle</h2></div><span class="mini-icon" aria-hidden="true">⚙</span></div>
+        <form id="puzzle-form" novalidate>
+          <div class="form-grid">
+            <label class="field" for="capacity-a"><span>Jug A capacity <small>LITRES</small></span><input id="capacity-a" name="capacity-a" type="number" min="1" max="30" step="1" inputmode="numeric" value="4" required /></label>
+            <label class="field" for="capacity-b"><span>Jug B capacity <small>LITRES</small></span><input id="capacity-b" name="capacity-b" type="number" min="1" max="30" step="1" inputmode="numeric" value="3" required /></label>
+          </div>
+          <label class="field target-field" for="target"><span>Target amount <small>LITRES IN EITHER JUG</small></span><input id="target" name="target" type="number" min="0" max="30" step="1" inputmode="numeric" value="2" required /></label>
+          <fieldset class="algorithm-picker"><legend>Search algorithm</legend><label class="algorithm-option"><input type="radio" name="algorithm" value="bfs" checked /><span class="option-body"><strong>BFS</strong><small>Shortest solution</small></span></label><label class="algorithm-option"><input type="radio" name="algorithm" value="dfs" /><span class="option-body"><strong>DFS</strong><small>Depth-first exploration</small></span></label></fieldset>
+          <button type="submit" class="primary-button" id="solve-button"><span>Find solution</span><span aria-hidden="true">↗</span></button>
+          <div class="control-helper"><span>Max capacity: 30 L</span><button type="button" id="reset-button" class="text-button">Reset to example ↺</button></div>
+        </form>
+      </section>
+      <section class="panel visual-panel" aria-labelledby="visual-title">
+        <div class="panel-heading"><div><div class="section-number">VISUALIZATION / 02</div><h2 id="visual-title">Water in motion</h2></div><span id="result-pill" class="result-pill" role="status">READY TO SOLVE</span></div>
+        <div class="jug-stage" aria-label="Current water amounts">
+          <div class="jug-wrapper"><span class="jug-label">JUG A</span><div class="jug-vessel jug-a" id="jug-a-vessel" role="img" aria-label="Jug A: 0 of 4 litres"><div class="jug-scale" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><div class="water water-a" id="water-a"></div><span class="jug-water-label" id="level-a">0<span> L</span></span></div><div class="jug-capacity" id="capacity-a-label">CAPACITY 4 L</div></div>
+          <div class="stage-middle"><div class="transfer-icon" aria-hidden="true">⇄</div><span>STATE SPACE</span></div>
+          <div class="jug-wrapper"><span class="jug-label">JUG B</span><div class="jug-vessel jug-b" id="jug-b-vessel" role="img" aria-label="Jug B: 0 of 3 litres"><div class="jug-scale" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="water water-b" id="water-b"></div><span class="jug-water-label" id="level-b">0<span> L</span></span></div><div class="jug-capacity" id="capacity-b-label">CAPACITY 3 L</div></div>
+        </div>
+        <div class="playback"><div class="playback-info"><span class="playback-kicker">CURRENT ACTION</span><strong id="step-action">Both jugs start empty</strong><small id="step-position">Step 0 of 0</small></div><div class="playback-actions"><button type="button" id="previous-step" class="icon-button" aria-label="Previous step" title="Previous step" disabled>←</button><button type="button" id="play-pause" class="play-button" aria-label="Play solution" disabled>▶ <span id="play-label">Play</span></button><button type="button" id="next-step" class="icon-button" aria-label="Next step" title="Next step" disabled>→</button></div></div>
+      </section>
+    </div>
+    <section class="metrics" aria-label="Algorithm results"><div class="metric"><div class="metric-label">SOLUTION MOVES <span>↗</span></div><div class="metric-value" id="moves-count">—</div><div class="metric-note">Actions to reach target</div></div><div class="metric"><div class="metric-label">STATES EXPLORED <span>◇</span></div><div class="metric-value" id="explored-count">—</div><div class="metric-note">Nodes expanded</div></div><div class="metric"><div class="metric-label">STATES DISCOVERED <span>◎</span></div><div class="metric-value" id="discovered-count">—</div><div class="metric-note">Unique states seen</div></div><div class="metric"><div class="metric-label">MAX FRONTIER <span>▤</span></div><div class="metric-value" id="frontier-count">—</div><div class="metric-note">Peak search queue or stack</div></div></section>
+    <section class="panel solution-panel" aria-labelledby="solution-title"><div class="panel-heading solution-heading"><div><div class="section-number">EXPLORATION / 03</div><h2 id="solution-title">Solution journey</h2><p>Each card represents a state and the action that leads to it. Select any step to inspect the jugs.</p></div><span class="steps-badge" id="steps-badge">NO STEPS YET</span></div><div id="message" class="message" role="status" aria-live="polite">Choose your jug capacities and target, then select <strong>Find solution</strong> to start.</div><ol id="step-list" class="step-list" aria-label="Solution steps"></ol></section>
+    <section class="how-section" id="how-it-works" aria-labelledby="how-title"><div class="section-number">UNDER THE HOOD / 04</div><h2 id="how-title">The logic behind the search</h2><div class="knowledge-grid"><article class="knowledge-card"><div class="knowledge-icon">01</div><h3>Represent states</h3><p>We represent each state as <code>(a, b)</code>, where a and b are the current amounts of water. The initial state is <code>(0, 0)</code>.</p></article><article class="knowledge-card"><div class="knowledge-icon">02</div><h3>Explore transitions</h3><p>For each state, the solver considers filling, emptying, and pouring water between the two jugs. Already-visited states are skipped.</p></article><article class="knowledge-card"><div class="knowledge-icon">03</div><h3>Reach the goal</h3><p>The goal is reached when either jug holds the target amount. BFS guarantees a minimum-move solution; DFS finds a path without that guarantee.</p></article></div><div class="knowledge-footnote">STATE-SPACE COMPLEXITY: AT MOST (CAPACITY A + 1) × (CAPACITY B + 1) UNIQUE STATES. TIME AND SPACE ARE O(A × B) FOR POSITIVE CAPACITIES.</div></section>
+  </main>
+  <footer class="site-footer shell"><span>© 2026 JugLab · Classical AI Foundations</span><span>Built with HTML, CSS & vanilla JavaScript · No API required</span></footer>
+</body>
+</html>
