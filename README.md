@@ -73,18 +73,18 @@ water-jug-ai/
 
 ## Deploy for free using GitHub Pages
 
-1. Create a **public** GitHub repository named `water-jug-ai`.
-2. Upload all files, keeping the `js/` and `tests/` directories intact, or run Git commands from the project directory:
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: implement interactive water jug AI solver"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/water-jug-ai.git
-   git push -u origin main
-   ```
-3. On GitHub, open **Settings → Pages**. Under **Build and deployment**, choose **Deploy from a branch**, select **main** and **/(root)**, and save.
-4. Once GitHub Pages finishes publishing, verify the URL `https://YOUR_USERNAME.github.io/water-jug-ai/` on desktop and mobile. It is not a confirmed live URL until it is deployed and checked.
+Repository: https://github.com/alvy007/water-jug-ai
+
+This project includes the automated GitHub Actions workflow `.github/workflows/deploy-pages.yml` that runs the 14 unit tests and deploys the static website on every push to `main`.
+
+**One-time GitHub Pages setup:**
+
+1. Open [Repository Settings → Pages](https://github.com/alvy007/water-jug-ai/settings/pages).
+2. Under **Build and deployment**, set **Source** to **GitHub Actions** (not "Deploy from a branch").
+3. Open [Actions](https://github.com/alvy007/water-jug-ai/actions) and re-run the failed deployment workflow if GitHub does not trigger it automatically.
+4. Confirm the URL https://alvy007.github.io/water-jug-ai/ is accessible before submitting it.
+
+The repository and tests are complete. GitHub Pages is not considered live until the published URL has been verified.
 
 ## Tech stack
 
