@@ -1,6 +1,6 @@
 # Internship Assignment 01: Water Jug Problem
 
-**Repository:** https://github.com/alvy007/water-jug-ai (enter only after repository is created)
+**Repository:** https://github.com/alvy007/water-jug-ai
 
 **Live demo:** https://alvy007.github.io/water-jug-ai/ (enter only after GitHub Pages has been enabled and verified)
 
@@ -17,7 +17,7 @@ Implemented a fully interactive Water Jug Problem solver using JavaScript and cl
 - [x] Step-by-step animated visualization
 - [x] Documentation and implementation remarks
 - [x] Confirm automated tests pass (14/14)
-- [ ] Create GitHub repository and push source
-- [ ] Enable and verify GitHub Pages
+- [x] Create GitHub repository and push source
+- [ ] Enable GitHub Pages with GitHub Actions in repository settings and verify live URL
 - [ ] Attach ZIP to portal
 - [ ] Submit once all fields are verified
